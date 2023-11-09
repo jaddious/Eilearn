@@ -4,6 +4,9 @@ labelimg/
 Tensorflow/
 nvvm/
 map_layers/
+qgis/
+cache/
+models/
 
 
 # Byte-compiled / optimized / DLL files
