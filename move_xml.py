@@ -4,15 +4,15 @@
 import os
 import shutil
 
-layer_name = "popp_karte"
-zoom_level = 16
+layer_name = "ign_france"
+zoom_level = 15
 
 # path to the folder where the files are
-labeled = r"map_layers\{}\labeled".format(
+labeled = r"map_layers\{}\images\labeled".format(
     layer_name)
 
 # path to the folder where the files will be moved to
-to_label = r"map_layers\{}\to_label\\16".format(
+to_label = r"map_layers\{}\images\to_label".format(
     layer_name)
 
 if not os.path.exists(labeled):
@@ -22,5 +22,6 @@ if not os.path.exists(labeled):
 for file in os.listdir(to_label):
     if file.endswith(".xml"):
         shutil.move(os.path.join(to_label, file), os.path.join(labeled, file))
-        shutil.move(os.path.join(to_label, file[:-4] + ".jpg"), os.path.join(labeled, file[:-4] + ".jpg"))
+        shutil.move(os.path.join(
+            to_label, file[:-4] + ".jpg"), os.path.join(labeled, file[:-4] + ".jpg"))
         print("moved " + file + " to " + to_label)

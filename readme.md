@@ -52,17 +52,16 @@ pip install PyYAML==5.3.1
 
 - map_layers: contains the image data for the layers to be trained on.
   - <layer_name>: Each sub folder represents layer names. All the images related to that layer are stored in this folder.
-    - tiles: the exported XYZ tiles (see step 1)
-    - to*label: the images to label. Basically the tiles moved here with a flattened folder structure. The images are renamed to <z>*<x>\_<y>.jpg where z, x, and y are the tile coordinates.
-    - train: the images used for training. This should represent 80% of the images in the to_label folder.
-    - test: the images used for testing. This should represent 20% of the images in the to_label folder.
+    - images: All the image data that is used for training and testing.
+      - tiles: the exported XYZ tiles (see step 1)
+      - to label: the images to label. Basically the tiles moved here with a flattened folder structure. The images are renamed to <z>*<x>\_<y>.jpg where z, x, and y are the tile coordinates.
+      - train: the images used for training. This should represent 80% of the images in the to_label folder.
+      - test: the images used for testing. This should represent 20% of the images in the to_label folder.
 
-## 1. Exporting Tiles
+## Step 1. Exporting Tiles
 
 To know how many tiles are going to be exported, see the mapbox offline estimator:
 https://docs.mapbox.com/playground/offline-estimator/
-
-### EILAND Detection
 
 The tiles used for the detection of Islands are extracted from two web mapping services:
 
@@ -70,7 +69,7 @@ The tiles used for the detection of Islands are extracted from two web mapping s
 - popp_karte: https://geo.api.vlaanderen.be/HISTCART/wmts
 - France: Carte de l'Etat Major (1820-1866): https://wxs.ign.fr/cartes/geoportail/wmts?SERVICE=WMTS&VERSION=1.0.0&REQUEST=GetCapabilities
 
-Tiles are exported using QGIS's "Generate XYZ tiles" function, with a zoom level of 16 and a tile resolution of 1024 \* 1024 pixels, 150 DPI, JPG, 75 quality.
+Tiles are exported using QGIS's "Generate XYZ tiles" function, with a zoom level of 16 and a tile resolution of 1024 \* 1024 pixels, 150 DPI, JPG, 75 quality. 
 
 Save the tile to 'images/tiles/<layer_name>' directory.
 
@@ -93,6 +92,7 @@ pip install labelImg
 enter the labelImg folder and run
 
 ```
+cd labelImg
 python labelImg.py
 ```
 

@@ -4,16 +4,16 @@
 import os
 import shutil
 
-layer_name = "popp_karte"
-zoom_level = 16
+layer_name = "etat_major"
+zoom_level = 15
 
 # path to the folder where the files are
-path = r"map_layers\{}\tiles\\16".format(
-    layer_name)
+path = r"map_layers\{}\images\tiles\\{}".format(
+    layer_name, zoom_level)
 
 # path to the folder where the files will be moved to
-to_label = r"map_layers\{}\to_label\\16".format(
-    layer_name)
+to_label = r"map_layers\{}\images\to_label\\{}".format(
+    layer_name, zoom_level)
 
 sub_folders = os.listdir(path)
 
@@ -27,7 +27,7 @@ for sub_folder in sub_folders:
     print(f"Number of jpgs in {sub_folder}: {len(jpgs)}")
     for jpg in jpgs:
         # copy to to_be_labelled folder
-        shutil.move(os.path.join(path, sub_folder, jpg), to_label)
+        shutil.copy(os.path.join(path, sub_folder, jpg), to_label)
         # rename copied file
         os.rename(os.path.join(to_label, jpg), os.path.join(
-            to_label, f"16_{sub_folder}_{jpg}"))
+            to_label, f"{zoom_level}_{sub_folder}_{jpg}"))
